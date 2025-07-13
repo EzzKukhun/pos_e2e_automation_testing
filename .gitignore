@@ -1,0 +1,10 @@
+# Dependency directories
+node_modules/
+# Logs
+logs
+*.log
+
+# OS / IDE files
+.DS_Store
+.env
+.vscode/

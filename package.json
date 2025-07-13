@@ -1,0 +1,21 @@
+{
+  "name": "cypress_pos_e2e_validation",
+  "version": "1.0.0",
+  "description": "This project is to perform e2e validation for pos system",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress open"
+  },
+  "keywords": [
+    "cypress",
+    "javascript",
+    "typescript",
+    "testing"
+  ],
+  "author": "ezz kukhun",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^14.5.1",
+    "typescript": "^5.8.3"
+  }
+}
