@@ -25,13 +25,55 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      login(username: string, password: string): Chainable<void>;
+      loginWithoutSession(username: string, password: string): Chainable<void>;
+    }
+  }
+}
+
+Cypress.Commands.add("login", (username: string, password: string) => {
+  cy.session("LogIn", () => {
+    cy.visit("http://localhost:3000");
+    cy.get(`input[name="username"]`).type(username);
+    cy.get(`input[name="password"]`).type(password);
+    cy.get(`button[name="logInBtn"]`).click();
+  });
+});
+
+Cypress.Commands.add(
+  "loginWithoutSession",
+  (username: string, password: string) => {
+    if (username === "" && password === "") {
+      cy.get(`input[name="username"]`)
+        .clear()
+        .type(" ", { force: true })
+        .type("{backspace}");
+      cy.get(`input[name="password"]`)
+        .clear()
+        .type(" ", { force: true })
+        .type("{backspace}");
+    } else if (username === "") {
+      cy.get(`input[name="username"]`)
+        .clear()
+        .type(" ", { force: true })
+        .type("{backspace}");
+      cy.get(`input[name="password"]`).type(password);
+    } else if (password === "") {
+      cy.get(`input[name="username"]`).type(username);
+      cy.get(`input[name="password"]`)
+        .clear()
+        .type(" ", { force: true })
+        .type("{backspace}");
+    } else {
+      cy.get(`input[name="username"]`).type(username);
+      cy.get(`input[name="password"]`).type(password);
+    }
+
+    cy.get(`button[name="logInBtn"]`).click();
+  }
+);
+
+export {};
