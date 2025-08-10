@@ -1,7 +1,7 @@
 import { Product } from "../support/types";
-import {productFormSelectors} from "../fixtures/selectors";
+import { productFormSelectors } from "../fixtures/selectors";
 
-class Products {
+export class Products {
   productName: string;
   productCode: string;
   productCategory: string;
@@ -32,13 +32,19 @@ class Products {
   }
 
   public addProduct() {
-    cy.contains(productFormSelectors.addNewProductBtnText).click()
-    cy.get(productFormSelectors.productName).type(this.productName)
-    cy.get(productFormSelectors.productCode).type(this.productCode)
-    cy.get(productFormSelectors.productCategory).contains(this.productName).click()
-    cy.get(productFormSelectors.productQuantity).type(String(this.productQuantity))
-    cy.get(productFormSelectors.productPrice).type(this.productPrice.toString())
-    cy.get(productFormSelectors.productCost).type(this.productCost.toString())
-    cy.get(productFormSelectors.productDesc).type(this.productDesc)
+    cy.contains("button", productFormSelectors.addNewProductBtnText).click();
+    cy.get(productFormSelectors.productName).type(this.productName);
+    cy.get(productFormSelectors.productCode).type(this.productCode);
+    cy.dropdownSelect('Category', this.productCategory);
+
+    cy.get(productFormSelectors.productQuantity).type(
+      this.productQuantity.toString()
+    );
+    cy.get(productFormSelectors.productPrice).type(
+      this.productPrice.toString()
+    );
+    cy.get(productFormSelectors.productCost).type(this.productCost.toString());
+    cy.get(productFormSelectors.productDesc).type(this.productDesc);
+    cy.uploadFile(productFormSelectors.productImageFile, 'test.png')
   }
 }

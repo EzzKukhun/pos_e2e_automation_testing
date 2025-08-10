@@ -1,4 +1,6 @@
 /// <reference types="cypress" />
+import 'cypress-file-upload';
+
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -30,6 +32,8 @@ declare global {
     interface Chainable {
       login(username: string, password: string): Chainable<void>;
       loginWithoutSession(username: string, password: string): Chainable<void>;
+      dropdownSelect(label: string, optionValue: string): Chainable<void>;
+      uploadFile(selector: string, fileName: string): Chainable<void>;
     }
   }
 }
@@ -75,5 +79,25 @@ Cypress.Commands.add(
     cy.get(`button[name="logInBtn"]`).click();
   }
 );
+
+
+Cypress.Commands.add('dropdownSelect', (label: string, optionValue: string) => {
+  cy.contains('label', label)
+    .parent() // go to the container div
+    .find('[role="button"]') // MUI select root
+    .click();
+  cy.get('ul[role="listbox"] li')
+    .contains(optionValue) // the option text
+    .click();
+  cy.contains('label', label)
+    .parent()
+    .find('[role="button"]')
+    .should("contain.text", optionValue);
+})
+
+
+Cypress.Commands.add('uploadFile', (selector: string, fileName: string) => {
+  cy.get(selector).attachFile(fileName)
+})
 
 export {};

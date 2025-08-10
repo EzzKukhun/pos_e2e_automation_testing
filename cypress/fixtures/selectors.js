@@ -10,7 +10,8 @@ export const productFormSelectors = {
     productQuantity: `input[name="productQuantity"]`, 
     productCost: `input[name="productCost"]`, 
     productPrice: `input[name="productPrice"]`, 
-    productDesc: `input[name="productDesc"]`,
+    productDesc: `textarea[name="productDesc"]`,
+    productImageFile: `input[name='file']`,
     addNewProductBtnText: `Add New Product`
 }
 module.exports = {signUpSelectors, productFormSelectors};
