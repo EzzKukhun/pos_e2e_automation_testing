@@ -10,8 +10,13 @@ export const productFormSelectors = {
     productQuantity: `input[name="productQuantity"]`, 
     productCost: `input[name="productCost"]`, 
     productPrice: `input[name="productPrice"]`, 
-    productDesc: `textarea[name="productDesc"]`,
+    productDescription: `textarea[name="productDesc"]`,
     productImageFile: `input[name='file']`,
     addNewProductBtnText: `Add New Product`
 }
-module.exports = {signUpSelectors, productFormSelectors};
+
+export const productTableSelectors = {
+  productTableBody: `tbody[class="table_tableBody__FOB0D"]`,
+
+}
+module.exports = {signUpSelectors, productFormSelectors, productTableSelectors};

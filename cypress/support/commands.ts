@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 import 'cypress-file-upload';
+import '@testing-library/cypress/add-commands'
+
 
 // ***********************************************
 // This example commands.ts shows you how to
@@ -97,7 +99,7 @@ Cypress.Commands.add('dropdownSelect', (label: string, optionValue: string) => {
 
 
 Cypress.Commands.add('uploadFile', (selector: string, fileName: string) => {
-  cy.get(selector).attachFile(fileName)
+  cy.get(selector).attachFile(`product_imgs/${fileName}`)
 })
 
 export {};

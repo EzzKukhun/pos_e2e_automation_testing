@@ -1,0 +1,505 @@
+[
+  {
+    "productName": "Red Apple",
+    "productCode": "FRU-001",
+    "productCategory": "Fruits",
+    "productQuantity": 120,
+    "productCost": 0.3,
+    "productPrice": 0.5,
+    "productDescription": "Fresh and juicy red apples, perfect for snacking.",
+    "productImageName": "red_apple.jpg"
+  },
+  {
+    "productName": "Banana",
+    "productCode": "FRU-002",
+    "productCategory": "Fruits",
+    "productQuantity": 200,
+    "productCost": 0.2,
+    "productPrice": 0.4,
+    "productDescription": "Sweet ripe bananas rich in potassium.",
+    "productImageName": "banana.jpg"
+  },
+  {
+    "productName": "Orange",
+    "productCode": "FRU-003",
+    "productCategory": "Fruits",
+    "productQuantity": 150,
+    "productCost": 0.25,
+    "productPrice": 0.45,
+    "productDescription": "Citrusy and refreshing oranges packed with vitamin C.",
+    "productImageName": "orange.jpg"
+  },
+  {
+    "productName": "Watermelon",
+    "productCode": "FRU-004",
+    "productCategory": "Fruits",
+    "productQuantity": 60,
+    "productCost": 1.5,
+    "productPrice": 3.0,
+    "productDescription": "Large sweet watermelon, perfect for summer.",
+    "productImageName": "watermelon.jpg"
+  },
+  {
+    "productName": "Strawberry Pack",
+    "productCode": "FRU-005",
+    "productCategory": "Fruits",
+    "productQuantity": 90,
+    "productCost": 1.0,
+    "productPrice": 2.0,
+    "productDescription": "Fresh strawberries with a sweet and tangy flavor.",
+    "productImageName": "strawberry_pack.jpg"
+  },
+  {
+    "productName": "Pineapple",
+    "productCode": "FRU-006",
+    "productCategory": "Fruits",
+    "productQuantity": 80,
+    "productCost": 1.2,
+    "productPrice": 2.5,
+    "productDescription": "Tropical pineapple with a juicy and tangy taste.",
+    "productImageName": "pineapple.jpg"
+  },
+  {
+    "productName": "Mango",
+    "productCode": "FRU-007",
+    "productCategory": "Fruits",
+    "productQuantity": 100,
+    "productCost": 0.8,
+    "productPrice": 1.5,
+    "productDescription": "Sweet ripe mangoes perfect for desserts and smoothies.",
+    "productImageName": "mango.jpg"
+  },
+  {
+    "productName": "Grapes",
+    "productCode": "FRU-008",
+    "productCategory": "Fruits",
+    "productQuantity": 110,
+    "productCost": 1.1,
+    "productPrice": 2.2,
+    "productDescription": "Seedless grapes with a sweet, refreshing flavor.",
+    "productImageName": "grapes.jpg"
+  },
+  {
+    "productName": "Peach",
+    "productCode": "FRU-009",
+    "productCategory": "Fruits",
+    "productQuantity": 95,
+    "productCost": 0.7,
+    "productPrice": 1.4,
+    "productDescription": "Juicy peaches with a sweet floral aroma.",
+    "productImageName": "peach.jpg"
+  },
+  {
+    "productName": "Kiwi",
+    "productCode": "FRU-010",
+    "productCategory": "Fruits",
+    "productQuantity": 85,
+    "productCost": 0.6,
+    "productPrice": 1.2,
+    "productDescription": "Tangy green kiwis packed with vitamin C.",
+    "productImageName": "kiwi.jpg"
+  },
+
+  {
+    "productName": "Tomato",
+    "productCode": "VEG-011",
+    "productCategory": "Vegetables",
+    "productQuantity": 300,
+    "productCost": 0.15,
+    "productPrice": 0.3,
+    "productDescription": "Fresh red tomatoes perfect for salads and cooking.",
+    "productImageName": "tomato.jpg"
+  },
+  {
+    "productName": "Cucumber",
+    "productCode": "VEG-012",
+    "productCategory": "Vegetables",
+    "productQuantity": 250,
+    "productCost": 0.1,
+    "productPrice": 0.25,
+    "productDescription": "Crisp and refreshing cucumbers for salads.",
+    "productImageName": "cucumber.jpg"
+  },
+  {
+    "productName": "Potato",
+    "productCode": "VEG-013",
+    "productCategory": "Vegetables",
+    "productQuantity": 400,
+    "productCost": 0.2,
+    "productPrice": 0.35,
+    "productDescription": "Versatile potatoes for boiling, frying, or baking.",
+    "productImageName": "potato.jpg"
+  },
+  {
+    "productName": "Carrot",
+    "productCode": "VEG-014",
+    "productCategory": "Vegetables",
+    "productQuantity": 280,
+    "productCost": 0.18,
+    "productPrice": 0.3,
+    "productDescription": "Sweet carrots full of beta-carotene.",
+    "productImageName": "carrot.jpg"
+  },
+  {
+    "productName": "Onion",
+    "productCode": "VEG-015",
+    "productCategory": "Vegetables",
+    "productQuantity": 350,
+    "productCost": 0.12,
+    "productPrice": 0.25,
+    "productDescription": "Strong-flavored onions for cooking.",
+    "productImageName": "onion.jpg"
+  },
+  {
+    "productName": "Broccoli",
+    "productCode": "VEG-016",
+    "productCategory": "Vegetables",
+    "productQuantity": 140,
+    "productCost": 0.9,
+    "productPrice": 1.5,
+    "productDescription": "Fresh green broccoli packed with nutrients.",
+    "productImageName": "broccoli.jpg"
+  },
+  {
+    "productName": "Spinach",
+    "productCode": "VEG-017",
+    "productCategory": "Vegetables",
+    "productQuantity": 160,
+    "productCost": 0.6,
+    "productPrice": 1.2,
+    "productDescription": "Leafy green spinach rich in iron and vitamins.",
+    "productImageName": "spinach.jpg"
+  },
+  {
+    "productName": "Eggplant",
+    "productCode": "VEG-018",
+    "productCategory": "Vegetables",
+    "productQuantity": 180,
+    "productCost": 0.5,
+    "productPrice": 1.0,
+    "productDescription": "Glossy purple eggplants ideal for grilling or stews.",
+    "productImageName": "eggplant.jpg"
+  },
+  {
+    "productName": "Cauliflower",
+    "productCode": "VEG-019",
+    "productCategory": "Vegetables",
+    "productQuantity": 130,
+    "productCost": 0.8,
+    "productPrice": 1.5,
+    "productDescription": "White cauliflower perfect for roasting or soups.",
+    "productImageName": "cauliflower.jpg"
+  },
+  {
+    "productName": "Bell Pepper",
+    "productCode": "VEG-020",
+    "productCategory": "Vegetables",
+    "productQuantity": 150,
+    "productCost": 0.7,
+    "productPrice": 1.3,
+    "productDescription": "Colorful bell peppers with a sweet crunch.",
+    "productImageName": "bell_pepper.jpg"
+  },
+
+  {
+    "productName": "Beef Steak",
+    "productCode": "MEA-021",
+    "productCategory": "Meat",
+    "productQuantity": 50,
+    "productCost": 5.5,
+    "productPrice": 9.99,
+    "productDescription": "Tender beef steak perfect for grilling.",
+    "productImageName": "beef_steak.jpg"
+  },
+  {
+    "productName": "Ground Beef",
+    "productCode": "MEA-022",
+    "productCategory": "Meat",
+    "productQuantity": 70,
+    "productCost": 4.0,
+    "productPrice": 7.5,
+    "productDescription": "Fresh ground beef ideal for burgers and meatballs.",
+    "productImageName": "ground_beef.jpg"
+  },
+  {
+    "productName": "Beef Ribs",
+    "productCode": "MEA-023",
+    "productCategory": "Meat",
+    "productQuantity": 40,
+    "productCost": 6.0,
+    "productPrice": 10.5,
+    "productDescription": "Juicy beef ribs perfect for slow cooking.",
+    "productImageName": "beef_ribs.jpg"
+  },
+  {
+    "productName": "Lamb Chops",
+    "productCode": "MEA-024",
+    "productCategory": "Meat",
+    "productQuantity": 35,
+    "productCost": 7.0,
+    "productPrice": 12.0,
+    "productDescription": "Tender lamb chops with rich flavor.",
+    "productImageName": "lamb_chops.jpg"
+  },
+  {
+    "productName": "Lamb Leg",
+    "productCode": "MEA-025",
+    "productCategory": "Meat",
+    "productQuantity": 25,
+    "productCost": 8.0,
+    "productPrice": 14.0,
+    "productDescription": "Whole lamb leg perfect for roasting.",
+    "productImageName": "lamb_leg.jpg"
+  },
+  {
+    "productName": "Beef Brisket",
+    "productCode": "MEA-026",
+    "productCategory": "Meat",
+    "productQuantity": 45,
+    "productCost": 5.8,
+    "productPrice": 10.0,
+    "productDescription": "Flavorful beef brisket ideal for smoking.",
+    "productImageName": "beef_brisket.jpg"
+  },
+  {
+    "productName": "Veal Cutlets",
+    "productCode": "MEA-027",
+    "productCategory": "Meat",
+    "productQuantity": 30,
+    "productCost": 6.5,
+    "productPrice": 11.5,
+    "productDescription": "Tender veal cutlets for frying or grilling.",
+    "productImageName": "veal_cutlets.jpg"
+  },
+  {
+    "productName": "Lamb Shank",
+    "productCode": "MEA-028",
+    "productCategory": "Meat",
+    "productQuantity": 28,
+    "productCost": 7.2,
+    "productPrice": 12.8,
+    "productDescription": "Lamb shanks ideal for braising.",
+    "productImageName": "lamb_shank.jpg"
+  },
+  {
+    "productName": "Beef Tenderloin",
+    "productCode": "MEA-029",
+    "productCategory": "Meat",
+    "productQuantity": 20,
+    "productCost": 9.0,
+    "productPrice": 15.5,
+    "productDescription": "Premium beef tenderloin for fine dining.",
+    "productImageName": "beef_tenderloin.jpg"
+  },
+  {
+    "productName": "Minced Lamb",
+    "productCode": "MEA-030",
+    "productCategory": "Meat",
+    "productQuantity": 50,
+    "productCost": 5.2,
+    "productPrice": 9.0,
+    "productDescription": "Fresh minced lamb for kebabs and stews.",
+    "productImageName": "minced_lamb.jpg"
+  },
+
+  {
+    "productName": "Whole Chicken",
+    "productCode": "CHK-031",
+    "productCategory": "Chicken",
+    "productQuantity": 60,
+    "productCost": 3.5,
+    "productPrice": 6.0,
+    "productDescription": "Fresh whole chicken ready for roasting.",
+    "productImageName": "whole_chicken.jpg"
+  },
+  {
+    "productName": "Chicken Breast",
+    "productCode": "CHK-032",
+    "productCategory": "Chicken",
+    "productQuantity": 80,
+    "productCost": 4.0,
+    "productPrice": 7.0,
+    "productDescription": "Boneless chicken breast perfect for grilling.",
+    "productImageName": "chicken_breast.jpg"
+  },
+  {
+    "productName": "Chicken Wings",
+    "productCode": "CHK-033",
+    "productCategory": "Chicken",
+    "productQuantity": 90,
+    "productCost": 3.0,
+    "productPrice": 5.5,
+    "productDescription": "Crispy chicken wings great for frying.",
+    "productImageName": "chicken_wings.jpg"
+  },
+  {
+    "productName": "Chicken Thighs",
+    "productCode": "CHK-034",
+    "productCategory": "Chicken",
+    "productQuantity": 70,
+    "productCost": 3.2,
+    "productPrice": 5.8,
+    "productDescription": "Juicy chicken thighs for roasting.",
+    "productImageName": "chicken_thighs.jpg"
+  },
+  {
+    "productName": "Chicken Drumsticks",
+    "productCode": "CHK-035",
+    "productCategory": "Chicken",
+    "productQuantity": 75,
+    "productCost": 3.1,
+    "productPrice": 5.5,
+    "productDescription": "Tender chicken drumsticks for grilling.",
+    "productImageName": "chicken_drumsticks.jpg"
+  },
+  {
+    "productName": "Chicken Mince",
+    "productCode": "CHK-036",
+    "productCategory": "Chicken",
+    "productQuantity": 85,
+    "productCost": 3.8,
+    "productPrice": 6.5,
+    "productDescription": "Fresh chicken mince for burgers.",
+    "productImageName": "chicken_mince.jpg"
+  },
+  {
+    "productName": "Chicken Tenderloins",
+    "productCode": "CHK-037",
+    "productCategory": "Chicken",
+    "productQuantity": 65,
+    "productCost": 4.2,
+    "productPrice": 7.2,
+    "productDescription": "Lean chicken tenderloins great for quick cooking.",
+    "productImageName": "chicken_tenderloins.jpg"
+  },
+  {
+    "productName": "Chicken Liver",
+    "productCode": "CHK-038",
+    "productCategory": "Chicken",
+    "productQuantity": 55,
+    "productCost": 2.5,
+    "productPrice": 4.5,
+    "productDescription": "Fresh chicken liver for rich dishes.",
+    "productImageName": "chicken_liver.jpg"
+  },
+  {
+    "productName": "Chicken Gizzards",
+    "productCode": "CHK-039",
+    "productCategory": "Chicken",
+    "productQuantity": 50,
+    "productCost": 2.4,
+    "productPrice": 4.2,
+    "productDescription": "Tender chicken gizzards for stews.",
+    "productImageName": "chicken_gizzards.jpg"
+  },
+  {
+    "productName": "Smoked Chicken",
+    "productCode": "CHK-040",
+    "productCategory": "Chicken",
+    "productQuantity": 40,
+    "productCost": 5.0,
+    "productPrice": 8.5,
+    "productDescription": "Delicious smoked chicken ready to eat.",
+    "productImageName": "smoked_chicken.jpg"
+  },
+   {
+    "productName": "Orange Juice",
+    "productCode": "DR001",
+    "productCategory": "Drinks",
+    "productQuantity": 120,
+    "productCost": 1.2,
+    "productPrice": 2.5,
+    "productDescription": "Freshly squeezed orange juice, rich in Vitamin C.",
+    "productImageName": "orange_juice.png"
+  },
+  {
+    "productName": "Apple Juice",
+    "productCode": "DR002",
+    "productCategory": "Drinks",
+    "productQuantity": 90,
+    "productCost": 1.0,
+    "productPrice": 2.2,
+    "productDescription": "Refreshing apple juice made from organic apples.",
+    "productImageName": "apple_juice.png"
+  },
+  {
+    "productName": "Mango Smoothie",
+    "productCode": "DR003",
+    "productCategory": "Drinks",
+    "productQuantity": 70,
+    "productCost": 1.8,
+    "productPrice": 3.5,
+    "productDescription": "Creamy mango smoothie made with fresh mangos.",
+    "productImageName": "mango_smoothie.png"
+  },
+  {
+    "productName": "Strawberry Milkshake",
+    "productCode": "DR004",
+    "productCategory": "Drinks",
+    "productQuantity": 60,
+    "productCost": 2.0,
+    "productPrice": 4.0,
+    "productDescription": "Chilled strawberry milkshake topped with cream.",
+    "productImageName": "strawberry_milkshake.png"
+  },
+  {
+    "productName": "Cola",
+    "productCode": "DR005",
+    "productCategory": "Drinks",
+    "productQuantity": 200,
+    "productCost": 0.5,
+    "productPrice": 1.2,
+    "productDescription": "Classic fizzy cola drink, served chilled.",
+    "productImageName": "cola.png"
+  },
+  {
+    "productName": "Lemonade",
+    "productCode": "DR006",
+    "productCategory": "Drinks",
+    "productQuantity": 100,
+    "productCost": 0.7,
+    "productPrice": 1.5,
+    "productDescription": "Fresh homemade lemonade with a citrus twist.",
+    "productImageName": "lemonade.png"
+  },
+  {
+    "productName": "Iced Tea",
+    "productCode": "DR007",
+    "productCategory": "Drinks",
+    "productQuantity": 110,
+    "productCost": 0.8,
+    "productPrice": 1.8,
+    "productDescription": "Chilled iced tea with a hint of lemon.",
+    "productImageName": "iced_tea.png"
+  },
+  {
+    "productName": "Mineral Water",
+    "productCode": "DR008",
+    "productCategory": "Drinks",
+    "productQuantity": 300,
+    "productCost": 0.3,
+    "productPrice": 1.0,
+    "productDescription": "Pure bottled mineral water.",
+    "productImageName": "mineral_water.png"
+  },
+  {
+    "productName": "Coffee",
+    "productCode": "DR009",
+    "productCategory": "Drinks",
+    "productQuantity": 80,
+    "productCost": 1.0,
+    "productPrice": 2.5,
+    "productDescription": "Hot brewed coffee made from Arabica beans.",
+    "productImageName": "coffee.png"
+  },
+  {
+    "productName": "Green Tea",
+    "productCode": "DR010",
+    "productCategory": "Drinks",
+    "productQuantity": 85,
+    "productCost": 0.9,
+    "productPrice": 2.0,
+    "productDescription": "Healthy green tea rich in antioxidants.",
+    "productImageName": "green_tea.png"
+  }
+]

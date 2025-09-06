@@ -1,25 +1,26 @@
-import { Product } from "../support/types";
 import { productFormSelectors } from "../fixtures/selectors";
 
-export class Products {
+export class Product {
   productName: string;
   productCode: string;
   productCategory: string;
   productQuantity: number;
   productCost: number;
   productPrice: number;
-  productDesc: string;
-  productImage: string;
+  productDescription: string;
+  productImageName: string;
 
-  constructor(
+  
+
+  public setProduct (
     productName,
     productCode,
     productCategory,
     productQuantity,
     productCost,
     productPrice,
-    productDesc,
-    productImage
+    productDescription,
+    productImageName
   ) {
     this.productName = productName;
     this.productCode = productCode;
@@ -27,16 +28,15 @@ export class Products {
     this.productQuantity = productQuantity;
     this.productCost = productCost;
     this.productPrice = productPrice;
-    this.productDesc = productDesc;
-    this.productImage = productImage;
+    this.productDescription = productDescription;
+    this.productImageName = productImageName;
   }
 
   public addProduct() {
     cy.contains("button", productFormSelectors.addNewProductBtnText).click();
     cy.get(productFormSelectors.productName).type(this.productName);
     cy.get(productFormSelectors.productCode).type(this.productCode);
-    cy.dropdownSelect('Category', this.productCategory);
-
+    cy.dropdownSelect("Category", this.productCategory);
     cy.get(productFormSelectors.productQuantity).type(
       this.productQuantity.toString()
     );
@@ -44,7 +44,13 @@ export class Products {
       this.productPrice.toString()
     );
     cy.get(productFormSelectors.productCost).type(this.productCost.toString());
-    cy.get(productFormSelectors.productDesc).type(this.productDesc);
-    cy.uploadFile(productFormSelectors.productImageFile, 'test.png')
+    cy.get(productFormSelectors.productDescription).type(this.productDescription);
+    cy.uploadFile(productFormSelectors.productImageFile, this.productImageName);
+    cy.contains("button", "Save").click();
+    cy.wait(200);
+    cy.get(`div[class="swal-modal"]`).find("div").contains("Good Job!");
+    cy.wait(200)
+    cy.get(`div[class="swal-modal"]`).find("button").contains("OK").click();
+    cy.wait(200)
   }
 }
