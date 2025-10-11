@@ -1,32 +1,51 @@
 import { Product } from "../../pages/Products";
-import { productTableSelectors } from "../../fixtures/selectors";
-import {
-  findElementToBeDeleted,
-  deleteElement,
-  getProductsPerPage,
-  getProductsCountAtCurrentPage,
-  findElementToBeUpdated,
-} from "./utils";
-const testProduct = new Product();
 const product = new Product();
 const newProduct = new Product();
 let productsCounter = 1;
-let productToBeUpdated = [
+const productToBeUpdatedWithoutUpdateImage = [
+  
   {
-    "productName": "Pepper",
+    productCode: "VEG-020-1",
   },
   {
-    "productCode": "VEG-020-1",
+    productDescription: "Eggplant!",
   },
   {
-    "productDescription": "Fresh Pepper With Updated Code",
+    productQuantity: "200",
   },
   {
-    'productQuantity': "200",
+    productCost: "150",
   },
   {
-    "productCost": "150",
-  }
+    productImage: "red_pepper.jpeg",
+  },
+];
+
+const productToBeUpdatedWithImage = [
+  {
+    productName: "Pepper",
+  },
+  {
+    productImage: "red_pepper.jpg",
+  },
+];
+
+const productToBeUpdated = [
+  {
+    productCode: "FRU-020-1",
+  },
+  {
+    productDescription: "Fresh Apple!",
+  },
+  {
+    productQuantity: "200",
+  },
+  {
+    productCost: "150",
+  },
+  {
+    productImage: "red_apple_1.jpg",
+  },
 ];
 
 describe("admin product page scenarios", () => {
@@ -56,17 +75,36 @@ describe("admin product page scenarios", () => {
   });
 
   it("delete one product when the number of rows per page is 10", () => {
-    product.getProductsPerPage().then((productRows) => {
-      product.findElementToBeDeleted(productRows, "Veal Cutlets", productsCounter, 10);
-    });
+    product
+      .getProductsPerPage()
+      .then((productRows) => {
+        product.findProduct(
+          productRows,
+          "Beef Tenderloin",
+          productsCounter,
+          10
+        );
+      })
+      .then((element) => {
+        product.deleteElement(element[8]);
+      });
   });
 
-  it.only("delete one product when the number of rows per page is 15", () => {
-    cy.dropdownSelect("Range", "15").then(() => {
-      product.getProductsPerPage().then((productRows) => {
-        product.findElementToBeDeleted(productRows, "Chicken Gizzards", productsCounter, 15);
+  it("delete one product when the number of rows per page is 15", () => {
+    cy.dropdownSelect("Range", "15")
+      .then(() => {
+        product.getProductsPerPage().then((productRows) => {
+          product.findProduct(
+            productRows,
+            "Mango",
+            productsCounter,
+            15
+          );
+        });
+      })
+      .then((element) => {
+        product.deleteElement(element[8]);
       });
-    });
   });
 
   it("search for a product and delete it", () => {
@@ -91,23 +129,46 @@ describe("admin product page scenarios", () => {
       });
   });
 
-  it("update a product successfully without using search bar", () => {
-    product.getProductsPerPage().then((productRows) => {
-      product.findElementToBeUpdated(
-        productRows,
-        "Bell Pepper",
-        productsCounter,
-        10,
-        productToBeUpdated
-      );
-    });
+  it.only("update a product successfully without using search bar", () => {
+    product
+      .getProductsPerPage()
+      .then((productRows) => {
+        product.findProduct(productRows, "Eggplant", productsCounter, 10);
+      })
+      .then((element) => {
+        cy.wrap(element[7]).click().then(() => {
+          product.updateProduct(productToBeUpdatedWithoutUpdateImage);
+        });
+      });
   });
 
-  it("update a product with missing one of the required fields", () => {});
+  it("update the descriptor image for a product", () => {
+    product.getProductsPerPage().then((productRows) => {
+      product.findProduct(
+        productRows,
+        "Pepper",
+        productsCounter,
+        10
+      );
+    }).then((element) => {
+        cy.wrap(element[7]).then(() => {
+          product.updateProduct(productToBeUpdatedWithImage);
+        });
+      });
+  });
 
-  it("update the descriptor image for a product", () => {});
-
-  it("search for a product and update it successfully", () => {});
+  it("search for a product and update it successfully", () => {
+    cy.findByLabelText("Search")
+      .type("red apple")
+      .then(() => {
+        cy.get("td")
+          .eq(7)
+          .click()
+          .then(() => {
+            product.updateProduct(productToBeUpdated);
+          });
+      });
+  });
 
   it("add a product and check if it is already added to cashier account", () => {});
 

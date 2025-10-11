@@ -1,8 +1,9 @@
 import { productFormSelectors } from "../fixtures/selectors";
 import { productTableSelectors } from "../fixtures/selectors";
+import { Pagination } from "./Pagination";
 let productsCounter = 1;
 
-export class Product {
+export class Product extends Pagination {
   productName: string;
   productCode: string;
   productCategory: string;
@@ -11,6 +12,7 @@ export class Product {
   productPrice: number;
   productDescription: string;
   productImageName: string;
+  foundElement: JQuery<HTMLTableCellElement> = null
 
   public setProduct(
     productName,
@@ -56,24 +58,24 @@ export class Product {
     cy.wait(200);
   }
 
-  public findElementToBeDeleted(
-    productRows,
+  public findProduct(
+    productRows: any,
     productName: string,
     productsCounter: number,
     productsPerPageNumber: number
   ) {
-    cy.wrap(productRows).each((row) => {
+    return cy.wrap(productRows).each((row) => {
       cy.wrap(row)
         .find("td")
         .then((cells) => {
           if (productsCounter % productsPerPageNumber === 0) {
             if (cells[1].innerText === productName) {
-              this.deleteElement(cells[8]);
+              this.foundElement = cells;
               return;
             } else {
               this.moveToNextPage().then(() => {
                 this.getProductsPerPage().then((productRows) => {
-                  this.findElementToBeDeleted(
+                  this.findProduct(
                     productRows,
                     productName,
                     (productsCounter += 1),
@@ -83,15 +85,18 @@ export class Product {
               });
             }
           } else if (cells[1].innerText === productName) {
-            this.deleteElement(cells[8]);
+            this.foundElement = cells;
+            return;
           } else {
             productsCounter++;
           }
         });
+    }).then(() => {
+      return this.foundElement
     });
   }
 
-  public deleteElement(deleteBtn: HTMLTableCellElement | JQuery<HTMLElement>) {
+  public deleteElement(deleteBtn: HTMLTableCellElement | JQuery<HTMLElement> | HTMLTableRowElement) {
     cy.wrap(deleteBtn)
       .click()
       .get(`div[class="swal-modal"]`)
@@ -115,48 +120,9 @@ export class Product {
     });
   }
 
-  public findElementToBeUpdated(
-    productRows,
-    productName: string,
-    productsCounter: number,
-    productsPerPageNumber: number,
-    elementsToBeUpdated: any[]
-  ) {
-    cy.wrap(productRows).each((row) => {
-      cy.wrap(row)
-        .find("td")
-        .then((cells) => {
-          if (productsCounter % productsPerPageNumber === 0) {
-            if (cells[1].innerText === productName) {
-              cy.wrap(cells[7]).click();
-              this.updateProduct(elementsToBeUpdated);
-              return;
-            } else {
-              this.moveToNextPage().then(() => {
-                this.getProductsPerPage().then((productRows) => {
-                  this.findElementToBeUpdated(
-                    productRows,
-                    productName,
-                    (productsCounter += 1),
-                    productsPerPageNumber,
-                    elementsToBeUpdated
-                  );
-                });
-              });
-            }
-          } else if (cells[1].innerText === productName) {
-            cy.wrap(cells[7]).click();
-            this.updateProduct(elementsToBeUpdated);
-          } else {
-            productsCounter++;
-          }
-        });
-    });
-  }
-
   public updateProduct(elementsToBeUpdated: any[]) {
     cy.wrap(elementsToBeUpdated)
-      .each((element) => {
+      .each((element: boolean | string | HTMLElement) => {
         const [key, value] = Object.entries(element)[0];
         if (`` + key === "productCategory") {
           cy.dropdownSelect("Category", `` + value);
@@ -164,6 +130,8 @@ export class Product {
           cy.get(`textarea[name='productDesc']`).type(
             "{selectall}{backspace}" + value
           );
+        } else if (`` + key === "productImage") {
+          cy.uploadFile(productFormSelectors.productImageFile, value as string);
         } else {
           cy.get(`input[name='${key}']`).type("{selectall}{backspace}" + value);
         }
