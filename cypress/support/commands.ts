@@ -1,7 +1,6 @@
 /// <reference types="cypress" />
-import 'cypress-file-upload';
-import '@testing-library/cypress/add-commands'
-
+import "cypress-file-upload";
+import "@testing-library/cypress/add-commands";
 
 // ***********************************************
 // This example commands.ts shows you how to
@@ -33,6 +32,7 @@ declare global {
   namespace Cypress {
     interface Chainable {
       login(username: string, password: string): Chainable<void>;
+      logout(): Chainable<void>;
       loginWithoutSession(username: string, password: string): Chainable<void>;
       dropdownSelect(label: string, optionValue: string): Chainable<void>;
       uploadFile(selector: string, fileName: string): Chainable<void>;
@@ -82,24 +82,30 @@ Cypress.Commands.add(
   }
 );
 
-
-Cypress.Commands.add('dropdownSelect', (label: string, optionValue: string) => {
-  cy.contains('label', label)
+Cypress.Commands.add("dropdownSelect", (label: string, optionValue: string) => {
+  cy.contains("label", label)
     .parent() // go to the container div
     .find('[role="button"]') // MUI select root
     .click();
   cy.get('ul[role="listbox"] li')
     .contains(optionValue) // the option text
     .click();
-  cy.contains('label', label)
+  cy.contains("label", label)
     .parent()
     .find('[role="button"]')
     .should("contain.text", optionValue);
-})
+});
 
+Cypress.Commands.add("logout", () => {
+  cy.contains("LogOut")
+    .click()
+    .then(() => {
+      cy.contains("OK").click();
+    });
+});
 
-Cypress.Commands.add('uploadFile', (selector: string, fileName: string) => {
-  cy.get(selector).attachFile(`product_imgs/${fileName}`)
-})
+Cypress.Commands.add("uploadFile", (selector: string, fileName: string) => {
+  cy.get(selector).attachFile(`product_imgs/${fileName}`);
+});
 
 export {};

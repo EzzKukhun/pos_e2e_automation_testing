@@ -12,7 +12,7 @@ export class Product extends Pagination {
   productPrice: number;
   productDescription: string;
   productImageName: string;
-  foundElement: JQuery<HTMLTableCellElement> = null
+  foundElement: JQuery<HTMLTableCellElement> = null;
 
   public setProduct(
     productName,
@@ -52,10 +52,7 @@ export class Product extends Pagination {
     cy.uploadFile(productFormSelectors.productImageFile, this.productImageName);
     cy.contains("button", "Save").click();
     cy.wait(200);
-    cy.get(`div[class="swal-modal"]`).find("div").contains("Good Job!");
-    cy.wait(200);
-    cy.get(`div[class="swal-modal"]`).find("button").contains("OK").click();
-    cy.wait(200);
+    return cy.get(`div[class="swal-modal"]`).find("div").contains("Good Job!");
   }
 
   public findProduct(
@@ -64,45 +61,53 @@ export class Product extends Pagination {
     productsCounter: number,
     productsPerPageNumber: number
   ) {
-    return cy.wrap(productRows).each((row) => {
-      cy.wrap(row)
-        .find("td")
-        .then((cells) => {
-          if (productsCounter % productsPerPageNumber === 0) {
-            if (cells[1].innerText === productName) {
+    return cy
+      .wrap(productRows)
+      .each((row) => {
+        cy.wrap(row)
+          .find("td")
+          .then((cells) => {
+            if (productsCounter % productsPerPageNumber === 0) {
+              if (cells[1].innerText === productName) {
+                this.foundElement = cells;
+                return;
+              } else {
+                this.moveToNextPage().then(() => {
+                  this.getProductsPerPage().then((productRows) => {
+                    this.findProduct(
+                      productRows,
+                      productName,
+                      (productsCounter += 1),
+                      productsPerPageNumber
+                    );
+                  });
+                });
+              }
+            } else if (cells[1].innerText === productName) {
               this.foundElement = cells;
               return;
             } else {
-              this.moveToNextPage().then(() => {
-                this.getProductsPerPage().then((productRows) => {
-                  this.findProduct(
-                    productRows,
-                    productName,
-                    (productsCounter += 1),
-                    productsPerPageNumber
-                  );
-                });
-              });
+              productsCounter++;
             }
-          } else if (cells[1].innerText === productName) {
-            this.foundElement = cells;
-            return;
-          } else {
-            productsCounter++;
-          }
-        });
-    }).then(() => {
-      return this.foundElement
-    });
+          });
+      })
+      .then(() => {
+        return this.foundElement;
+      });
   }
 
-  public deleteElement(deleteBtn: HTMLTableCellElement | JQuery<HTMLElement> | HTMLTableRowElement) {
+  public deleteElement(
+    deleteBtn: HTMLTableCellElement | JQuery<HTMLElement> | HTMLTableRowElement
+  ) {
     cy.wrap(deleteBtn)
       .click()
       .get(`div[class="swal-modal"]`)
       .find("button")
       .contains("OK")
       .click()
+      .then(() => {
+        cy.contains('OK').click()
+      })
       .then(() => {
         productsCounter = 1;
         return;

@@ -1,9 +1,11 @@
+import { Cashier } from "../../pages/Cashier";
 import { Product } from "../../pages/Products";
 const product = new Product();
 const newProduct = new Product();
+const cashier = new Cashier();
+
 let productsCounter = 1;
 const productToBeUpdatedWithoutUpdateImage = [
-  
   {
     productCode: "VEG-020-1",
   },
@@ -56,7 +58,7 @@ describe("admin product page scenarios", () => {
     cy.wait(1000);
   });
 
-  it.skip("add 50 products to the database from json file", () => {
+  it("add 50 products to the database from json file", () => {
     cy.fixture("products.json").then((products: Product[]) => {
       products.forEach((product: Product) => {
         newProduct.setProduct(
@@ -94,12 +96,7 @@ describe("admin product page scenarios", () => {
     cy.dropdownSelect("Range", "15")
       .then(() => {
         product.getProductsPerPage().then((productRows) => {
-          product.findProduct(
-            productRows,
-            "Mango",
-            productsCounter,
-            15
-          );
+          product.findProduct(productRows, "Mango", productsCounter, 15);
         });
       })
       .then((element) => {
@@ -121,7 +118,7 @@ describe("admin product page scenarios", () => {
 
   it("search for a product that does not exist", () => {
     cy.findByLabelText("Search")
-      .type("banana")
+      .type("Potato")
       .then(() => {
         product.getProductsCountAtCurrentPage().then((productsCount) => {
           expect(productsCount).to.eq(0);
@@ -129,28 +126,28 @@ describe("admin product page scenarios", () => {
       });
   });
 
-  it.only("update a product successfully without using search bar", () => {
+  it("update a product successfully without using search bar", () => {
     product
       .getProductsPerPage()
       .then((productRows) => {
         product.findProduct(productRows, "Eggplant", productsCounter, 10);
       })
       .then((element) => {
-        cy.wrap(element[7]).click().then(() => {
-          product.updateProduct(productToBeUpdatedWithoutUpdateImage);
-        });
+        cy.wrap(element[7])
+          .click()
+          .then(() => {
+            product.updateProduct(productToBeUpdatedWithoutUpdateImage);
+          });
       });
   });
 
   it("update the descriptor image for a product", () => {
-    product.getProductsPerPage().then((productRows) => {
-      product.findProduct(
-        productRows,
-        "Pepper",
-        productsCounter,
-        10
-      );
-    }).then((element) => {
+    product
+      .getProductsPerPage()
+      .then((productRows) => {
+        product.findProduct(productRows, "Pepper", productsCounter, 10);
+      })
+      .then((element) => {
         cy.wrap(element[7]).then(() => {
           product.updateProduct(productToBeUpdatedWithImage);
         });
@@ -170,9 +167,76 @@ describe("admin product page scenarios", () => {
       });
   });
 
-  it("add a product and check if it is already added to cashier account", () => {});
+  it("add a product and check if it is already added to cashier account", () => {
+    product.setProduct(
+      "Pepper",
+      "VEG-10-20",
+      "Vegetables",
+      10,
+      10,
+      20,
+      "This is a new product",
+      "red_pepper.jpg"
+    );
+    product.addProduct().then(() => {
+      cy.get(`div[class="swal-modal"]`).find("button").contains("OK").click();
+      cy.wait(200);
+      cy.contains("LogOut")
+        .click()
+        .then(() => {
+          cy.contains("OK").click();
+          cy.loginWithoutSession("ezzo123", "1234");
+          cashier
+            .getProductsPerPage(
+              ".pos_items__aZSKv",
+              `div[class='pos_item__EMtW2']`
+            )
+            .then((products) => {
+              cashier.findProduct(
+                products,
+                "Pepper",
+                ".pos_items__aZSKv",
+                `div[class='pos_item__EMtW2']`,
+                1
+              );
+            });
+        });
+    });
+  });
 
-  it("delete a product and check if it is already deleted at cashier account", () => {});
+  it.only("delete a product and check if it is already deleted at cashier account", () => {
+    product.getProductsPerPage().then((products) => {
+      product
+        .findProduct(products, "Chicken Drumsticks", (productsCounter = 1), 10)
+        .then((productToBeDeleted) => {
+          product.deleteElement(productToBeDeleted[8]);
+        })
+        .then(() => {
+          cy.logout().then(() => {
+            cy.loginWithoutSession("ezzo123", "1234").then(() => {
+              cashier
+                .getProductsPerPage(
+                  ".pos_items__aZSKv",
+                  `div[class='pos_item__EMtW2']`
+                )
+                .then((products) => {
+                  cashier
+                    .findProduct(
+                      products,
+                      "Chicken Drumsticks",
+                      ".pos_items__aZSKv",
+                      `div[class='pos_item__EMtW2']`,
+                      1
+                    )
+                    .then((product) => {
+                      console.log(product);
+                    });
+                });
+            });
+          });
+        });
+    });
+  });
 
   it("update a product and check if it is already updated at cashier account", () => {});
 });
